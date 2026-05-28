@@ -25,9 +25,16 @@ export type CredentialFormData = z.infer<typeof schema>;
 
 interface Props {
   onSuccess: (data: CredentialFormData) => void;
+  utmParams?: {
+    utm_source: string;
+    utm_medium: string;
+    utm_campaign: string;
+    utm_term: string;
+    utm_content: string;
+  };
 }
 
-export function CredentialForm({ onSuccess }: Props) {
+export function CredentialForm({ onSuccess, utmParams }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm<CredentialFormData>({
@@ -53,18 +60,27 @@ export function CredentialForm({ onSuccess }: Props) {
   const onSubmit = async (data: CredentialFormData) => {
     setIsSubmitting(true);
     try {
-      const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwaK_oR-5TuR9lpQmOXjWNrEoLsAR1iaBO9EMfysdykm_ySqFWB4mOIacEdHKY7N715YA/exec";
+      const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxO-rHpav1tNERNFM3m8YRrdW9QDBaLVLkf7c5HGf_MQuJdWe8G5P8LUOUvNCrvRDmlzw/exec";
       
+      const payload = {
+        nome: data.nomeCompleto,
+        email: data.email,
+        whatsapp: `${data.ddd} ${data.whatsapp}`,
+        timestamp: new Date().toISOString(),
+        utm_source: utmParams?.utm_source || "",
+        utm_medium: utmParams?.utm_medium || "",
+        utm_campaign: utmParams?.utm_campaign || "",
+        utm_term: utmParams?.utm_term || "",
+        utm_content: utmParams?.utm_content || "",
+      };
+
+      console.log("Enviando dados para o webhook:", payload);
+
       await fetch(WEBHOOK_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome: data.nomeCompleto,
-          email: data.email,
-          whatsapp: `${data.ddd} ${data.whatsapp}`,
-          timestamp: new Date().toISOString(),
-        }),
+        body: JSON.stringify(payload),
       });
       
       toast.success("Credencial gerada com sucesso!");
@@ -151,3 +167,4 @@ export function CredentialForm({ onSuccess }: Props) {
     </form>
   );
 }
+

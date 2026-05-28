@@ -4,59 +4,66 @@ Aplicativo web para geração de credenciais digitais personalizadas para o Work
 
 ## 🚀 Tecnologias Utilizadas
 
-- **React 18** com **TypeScript**
+- **React 19** com **TypeScript**
 - **Vite** (Build tool)
-- **Tailwind CSS** (Estilização com tokens HSL e efeitos Neon)
+- **Tailwind CSS v4** (Estilização com tokens HSL e efeitos Neon)
 - **Shadcn/UI** (Componentes de interface)
 - **React Hook Form + Zod** (Validação de formulários)
 - **QRCode.react** (Geração dinâmica de QR Code)
 - **HTML-to-Image** (Exportação da credencial para PNG)
-- **Lucide React** (Ícones)
-- **Sonner** (Notificações)
 
 ## 📋 Funcionalidades
 
-- Formulário de cadastro mobile-first com validação em tempo real.
-- Integração com Webhook (Google Apps Script) para registro de participantes.
-- Geração de credencial VIP com design premium (Dark Mode + Neon Orange).
-- QR Code dinâmico apontando para a central do participante.
-- Função de download da credencial em alta resolução (3x pixel ratio).
+- Formulário de cadastro mobile-first com validação em tempo real
+- Integração com Webhook (Google Apps Script) para registro de participantes
+- Geração de credencial VIP com design premium (Dark Mode + Neon Orange)
+- QR Code dinâmico apontando para a central do participante
+- Download da credencial em alta resolução (3x pixel ratio)
 
-## 🛠️ Instalação e Execução
+## 🛠️ Instalação e Desenvolvimento Local
 
-1. Clone o repositório:
-   ```bash
-   git clone <url-do-seu-repositorio>
-   ```
+```bash
+# 1. Clone o repositório
+git clone <url-do-seu-repositorio>
 
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
+# 2. Instale as dependências
+npm install
 
-3. Inicie o servidor de desenvolvimento:
-   ```bash
-   npm run dev
-   ```
+# 3. Inicie o servidor de desenvolvimento
+npm run dev
+```
 
-4. Para gerar a versão de produção:
-   ```bash
-   npm run build
-   ```
+## 🌐 Deploy no GitHub Pages (Automático)
+
+O projeto já está configurado com **GitHub Actions** para deploy automático.
+
+### Configuração única (fazer apenas uma vez):
+
+1. Vá em **Settings** do seu repositório no GitHub
+2. No menu lateral, clique em **Pages**
+3. Em **Source**, selecione **GitHub Actions**
+4. Salve
+
+Pronto! A partir de agora, toda vez que você fizer `git push` para a branch `main`, o projeto será compilado e publicado automaticamente.
+
+### URL do projeto:
+```
+https://<seu-usuario>.github.io/<nome-do-repositorio>/
+```
+
+## 🏗️ Build Manual
+
+```bash
+npm run build
+# Os arquivos prontos ficam na pasta /dist
+```
 
 ## 🎨 Design System
 
-O projeto utiliza um tema **Dark Mode** elegante:
-- **Cores**: Preto puro (`#000000`) e Laranja Neon (`#FFA500`).
-- **Tipografia**: Space Grotesk (Títulos) e Inter (Corpo).
-- **Efeitos**: Glow radial, Glassmorphism e sombras neon.
-
-## 🌐 Deploy (Netlify)
-
-Este projeto está configurado para deploy automático no Netlify:
-- **Build Command**: `npm run build`
-- **Publish Directory**: `dist`
-- **Configuração de SPA**: Já incluída via `netlify.toml`.
+- **Cores**: Preto puro (`#000000`) e Laranja Neon (`#FFA500`)
+- **Tipografia**: Arial Black (Títulos) e Inter (Corpo)
+- **Efeitos**: Glow radial, Glassmorphism e sombras neon
 
 ---
 Desenvolvido para **4blue**.
+
